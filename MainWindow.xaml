@@ -7,6 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+        </Grid.RowDefinitions>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Fill="SeaGreen" Grid.Column="0"/>
+            <Rectangle Fill="SeaGreen" Grid.Column="1"/>
+            <Rectangle Fill="SeaGreen" Grid.Column="2"/>
+            <Rectangle Fill="SeaGreen" Grid.Column="3"/>
+
+            <Button Height="45" Width="100" FontSize="20" Content="Redact" Name="btnRedact" Click="btnRedact_Click"
+                    IsEnabled="False"/>
+            <Button Height="45" Width="100" FontSize="20" Content="Select" Grid.Column="1" Name="btnSelect" Click="btnSelect_Click" 
+                    IsEnabled="True"/>
+            <Button Height="45" Width="100" FontSize="20" Content="Exit" Grid.Column="2" Name="btnExit" Click="btnExit_Click"
+                    IsEnabled="False"/>
+            <Button Height="45" Width="100" FontSize="20" Content="Read" Grid.Column="3" Name="btnRead" Click="btnRead_Click"
+                    IsEnabled="False"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Rectangle Fill="Black" Opacity="0.93"/>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <TextBlock Name="tbContent" Margin="20" FontSize="22" TextAlignment="Justify" LostFocus="tbContent_LostFocus"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="LimeGreen" Visibility="Collapsed" />
+            </ScrollViewer>
+
+            <TextBox FontSize="22" Margin="15" Height="auto" Width="auto" AcceptsReturn="True" Foreground="LimeGreen"
+                        HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="Transparent"
+                        BorderThickness="0.25" Name="tboxEditing" Visibility="Hidden" LostFocus="tboxEditing_LostFocus"/>
+        </Grid>
     </Grid>
 </Window>
