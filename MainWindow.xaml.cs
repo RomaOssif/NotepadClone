@@ -17,6 +17,7 @@ namespace NotepadClone
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "Choose a text file... | *.txt";
+            fileDialog.InitialDirectory = @"C:\Getting_Started\VS\NotepadClone\Files";
 
             if (fileDialog.ShowDialog() == true)
             {
