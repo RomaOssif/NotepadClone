@@ -1,4 +1,6 @@
 ﻿using Microsoft.Win32;
+using NotepadClone.View.UserControls;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 
@@ -10,7 +12,27 @@ namespace NotepadClone
 
         public MainWindow()
         {
+            DataContext = this;
+
+            SetListView();
+
             InitializeComponent();
+        }
+
+        private ObservableCollection<FileItem> _file = new ObservableCollection<FileItem>();
+
+        public ObservableCollection<FileItem> Files
+        {
+            get { return _file; }
+            set { _file = value; }
+        }
+
+        private void SetListView()
+        {
+            foreach (string fileName in Directory.GetFiles(@"C:\Getting_Started\VS\NotepadClone\Files\"))
+            {
+                Files.Add(new FileItem() { Path = fileName, CreationDate = File.GetCreationTime(fileName) });
+            }
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -29,6 +51,8 @@ namespace NotepadClone
             }
             else
                 tbContent.Text = "A file has not been selected :(";
+
+            //new version needed
         }
 
         private void UpdateStatus()
@@ -49,6 +73,8 @@ namespace NotepadClone
 
                 btnSelect.IsEnabled = false;
             }
+
+            //to update
         }
 
         private void btnRedact_Click(object sender, RoutedEventArgs e)

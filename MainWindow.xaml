@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotepadClone"
+        xmlns:userControls="clr-namespace:NotepadClone.View.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -38,6 +39,8 @@
         <Grid Grid.Row="1">
             <Rectangle Fill="Black" Opacity="0.93"/>
 
+            <ListView ItemsSource="{Binding Files}" SelectionMode="Single" Panel.ZIndex="1"/> 
+
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <TextBlock Name="tbContent" Margin="20" FontSize="22" TextAlignment="Justify" LostFocus="tbContent_LostFocus"
                 VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="LimeGreen" Visibility="Collapsed" />
@@ -45,7 +48,7 @@
 
             <TextBox FontSize="22" Margin="15" Height="auto" Width="auto" AcceptsReturn="True" Foreground="LimeGreen"
                         HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="Transparent"
-                        BorderThickness="0.25" Name="tboxEditing" Visibility="Hidden" LostFocus="tboxEditing_LostFocus"/>
+                        BorderThickness="0.25" Name="tboxEditing" Visibility="Collapsed" LostFocus="tboxEditing_LostFocus"/>
         </Grid>
     </Grid>
 </Window>
