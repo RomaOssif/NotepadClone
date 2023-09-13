@@ -37,22 +37,19 @@ namespace NotepadClone
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Choose a text file... | *.txt";
-            fileDialog.InitialDirectory = @"C:\Getting_Started\VS\NotepadClone\Files";
-
-            if (fileDialog.ShowDialog() == true)
+            if (lvFiles.SelectedItem == null)
+                MessageBox.Show("No file selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            
+            else
             {
-                _fileName = fileDialog.FileName;
+                var fileItem = (FileItem)lvFiles.SelectedItem;
+
+                _fileName = fileItem.Path;
 
                 UpdateStatus();
 
                 btnRead_Click(sender, e);
             }
-            else
-                tbContent.Text = "A file has not been selected :(";
-
-            //new version needed
         }
 
         private void UpdateStatus()
@@ -64,6 +61,7 @@ namespace NotepadClone
                 btnRead.IsEnabled = false;
 
                 btnSelect.IsEnabled = true;
+                lvFiles.Visibility = Visibility.Visible;
             }
             else
             {
@@ -72,9 +70,8 @@ namespace NotepadClone
                 btnRead.IsEnabled = true;
 
                 btnSelect.IsEnabled = false;
+                lvFiles.Visibility = Visibility.Collapsed;
             }
-
-            //to update
         }
 
         private void btnRedact_Click(object sender, RoutedEventArgs e)
@@ -94,15 +91,12 @@ namespace NotepadClone
         {
             _fileName = "";
 
-            tbContent_LostFocus(sender, e);
-
             UpdateStatus();
         }
 
         private void btnRead_Click(object sender, RoutedEventArgs e)
         {
             tbContent.Visibility = Visibility.Visible;
-            tbContent.IsEnabled = true;
 
             try
             {
@@ -113,9 +107,9 @@ namespace NotepadClone
             }
             catch
             {
-                MessageBox.Show("Could not read the file :(", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 tbContent_LostFocus(sender, e);
+
+                MessageBox.Show("Could not read the file :(", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -142,7 +136,6 @@ namespace NotepadClone
         {
             tbContent.Text = "";
             tbContent.Visibility = Visibility.Collapsed;
-            tbContent.IsEnabled = false;
         }
     }
 }

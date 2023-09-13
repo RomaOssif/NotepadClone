@@ -39,14 +39,14 @@
         <Grid Grid.Row="1">
             <Rectangle Fill="Black" Opacity="0.93"/>
 
-            <ListView ItemsSource="{Binding Files}" SelectionMode="Single" Panel.ZIndex="1"/> 
+            <ListView ItemsSource="{Binding Files}" SelectionMode="Single" Panel.ZIndex="1" Name="lvFiles"/> 
 
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <TextBlock Name="tbContent" Margin="20" FontSize="22" TextAlignment="Justify" LostFocus="tbContent_LostFocus"
                 VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="LimeGreen" Visibility="Collapsed" />
             </ScrollViewer>
 
-            <TextBox FontSize="22" Margin="15" Height="auto" Width="auto" AcceptsReturn="True" Foreground="LimeGreen"
+            <TextBox FontSize="22" Margin="15" Height="auto" Width="auto" AcceptsReturn="True" Foreground="LimeGreen" CaretBrush="LimeGreen"
                         HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="Transparent"
                         BorderThickness="0.25" Name="tboxEditing" Visibility="Collapsed" LostFocus="tboxEditing_LostFocus"/>
         </Grid>
